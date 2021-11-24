@@ -22,3 +22,15 @@ class BBCPage(BasePage):
 
         with open(FILE, 'wb') as file:
             file.write(text.encode('utf-8'))
+
+    def search(self, query: str):
+        lower = query.lower().strip()
+
+        found = []
+        for article in self._articles:
+            for value in article.values():
+                if lower in str(value).lower():
+                    found.append(article)
+                    break
+
+        return found

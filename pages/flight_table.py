@@ -42,3 +42,15 @@ class FlightTablePage(BasePage):
 
         print("Latest Flights:")
         print(self._flights)
+
+    def search(self, query: str):
+        lower = query.lower().strip()
+
+        found = []
+        for flight in self._flights:
+            for value in flight.values():
+                if lower in str(value).lower():
+                    found.append(flight)
+                    break
+
+        return found
